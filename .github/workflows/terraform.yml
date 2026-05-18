@@ -6,10 +6,9 @@ on:
       action:
         description: "Choose Terraform Action"
         required: true
-        default: "plan"
+        default: "apply"
         type: choice
         options:
-          - plan
           - apply
           - destroy
 
@@ -64,13 +63,12 @@ jobs:
 
       # Terraform Plan
       - name: Terraform Plan
-        if: github.event.inputs.action == 'plan'
-        run: terraform plan
+        run: terraform plan -input=false -out=tfplan
 
       # Terraform Apply
       - name: Terraform Apply
         if: github.event.inputs.action == 'apply'
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -input=false tfplan
 
       # Terraform Destroy
       - name: Terraform Destroy
