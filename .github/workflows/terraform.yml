@@ -39,9 +39,6 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
-      # Setup GCloud
-      - name: Setup GCP SDK
-        uses: google-github-actions/setup-gcloud@v2
 
       # Setup Terraform
       - name: Setup Terraform
